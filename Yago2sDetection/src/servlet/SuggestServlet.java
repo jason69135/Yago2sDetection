@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import DBUtils.PostgresDBUtils;
 
 /**
- * ajax提示用户输入
+ * ajax
  * 
  * @title: SuggestServlet
  */

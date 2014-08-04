@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_5.0"/>
+	<classpathentry kind="lib" path="/Users/yangfan/Desktop/postgresql-9.3-1101.jdbc3.jar"/>
+	<classpathentry kind="lib" path="/Users/yangfan/Downloads/google-gson-2.2.4/gson-2.2.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Users/yangfan/Downloads/google-gson-2.2.4/gson-2.2.4-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/yangfan/Downloads/google-gson-2.2.4/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="/Users/yangfan/Downloads/htmlunit-2.9/lib/commons-codec-1.4.jar"/>
 	<classpathentry kind="lib" path="/Users/yangfan/Downloads/htmlunit-2.9/lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="/Users/yangfan/Downloads/htmlunit-2.9/lib/commons-io-2.0.1.jar"/>
@@ -40,8 +46,5 @@
 	<classpathentry kind="lib" path="/Users/yangfan/Downloads/neo4j-community-2.1.2/lib/parboiled-scala_2.10-1.1.6.jar"/>
 	<classpathentry kind="lib" path="/Users/yangfan/Downloads/neo4j-community-2.1.2/lib/scala-library-2.10.4.jar"/>
 	<classpathentry kind="lib" path="/Users/yangfan/Downloads/neo4j-community-2.1.2/lib/server-api-2.1.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 6 [1.6.0_65-b14-462]"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_6.0"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
