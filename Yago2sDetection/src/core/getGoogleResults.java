@@ -25,7 +25,7 @@ public class getGoogleResults {
 //		webclient.setThrowExceptionOnFailingStatusCode(false);
 				
 		final HtmlForm form = htmlpage.getFormByName("f"); 
-		final HtmlSubmitInput button = form.getInputByValue("Google 搜索");
+		final HtmlSubmitInput button = form.getInputByValue("Google 搜尋");
 		final HtmlTextInput textField = form.getInputByName("q");
 		textField.setValueAttribute(word);
 		final HtmlPage page2 = button.click();

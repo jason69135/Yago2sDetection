@@ -33,14 +33,16 @@ public class findPath {
 
 	static GraphDatabaseService graphDb = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
 
-	double[] relationAccuracy = new double[] { 0.9552, 0.9528, 0.9562 };
+	double[] relationAccuracy = new double[] { 0.9552, 0.9528, 0.9562 , 1, 0.959};
 	Label actor = DynamicLabel.label("actor");
 	Label movie = DynamicLabel.label("movie");
 	Label director = DynamicLabel.label("director");
 	Label award = DynamicLabel.label("award");
+	Label gender = DynamicLabel.label("gender");
+	Label birthPlace = DynamicLabel.label("birthPlace");
 
 	private static enum RelTypes implements RelationshipType {
-		actedIn, directed, hasWonPrize
+		actedIn, directed, hasWonPrize,hasGender,wasBornIn
 	}
 
 	public List<Path> findAllPath(String startName, String endName) throws IOException {
