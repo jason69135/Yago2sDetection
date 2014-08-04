@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.neo4j.graphalgo.GraphAlgoFactory;
 import org.neo4j.graphalgo.PathFinder;
@@ -28,7 +27,7 @@ import core.getGoogleResults;
 public class depthTest{
 	private static String DB_PATH = "/Users/yangfan/Downloads/neo4j-community-2.1.2/data/graph.db";
 	static GraphDatabaseService graphDb = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
-	static double[] relationAccuracy = new double[] { 0.9552, 0.9528, 0.9562, 1, 0.959 };
+	static double[] relationAccuracy = new double[] { 0.9552, 0.9528, 0.9562, 0.999, 0.959 };
 	
 	public List<Path> findAllPath(String startName, String endName) throws IOException, InterruptedException {
 		registerShutdownHook(graphDb);
@@ -50,11 +49,10 @@ public class depthTest{
 			for (Path path : paths) {
 				if(path.length() == 0){
 				}
-				double beta = 0.1;
+				double beta = 0;
 				double Pconf = calConfidence(path);
 				double Pinfo = calInfo(path);
 				double P = beta * Pconf + (1-beta) * Pinfo ;
-//				Thread.sleep(20000);
 				BigDecimal bg = new BigDecimal(P);
 				P = bg.setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
 				weightPath.put(P, path);
