@@ -9,7 +9,7 @@ import java.util.List;
 import DBUtils.PostgresDBUtils;
 
 /**
- * java读取csv文件
+ * java
  * 
  * @title: readCsv
  */
@@ -53,12 +53,12 @@ public class readCsv {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("获取数据出错");
+			System.out.println("Data Error");
 			e.printStackTrace();
 		} finally {
 			dbu.close(conn, st1, rs);
 		}
 		long endTime=System.currentTimeMillis(); 
-		System.out.println("程序运行时间： "+(endTime-startTime)+"ms");
+		System.out.println("Time:"+(endTime-startTime)+"ms");
 	}
 }
