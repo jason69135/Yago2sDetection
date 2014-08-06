@@ -48,14 +48,17 @@ public class depthTest{
 			int j=0;
 			for (Path path : paths) {
 				if(path.length() == 0){
+					return null;
 				}
-				double beta = 0;
+				double beta = 0.4;
 				double Pconf = calConfidence(path);
 				double Pinfo = calInfo(path);
 				double P = beta * Pconf + (1-beta) * Pinfo ;
 				BigDecimal bg = new BigDecimal(P);
 				P = bg.setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
-				weightPath.put(P, path);
+				if(P != 0){
+					weightPath.put(P, path);
+				}
 				System.out.println(j);
 				j++;
 			}
@@ -140,13 +143,37 @@ public class depthTest{
 			String endName = end.getProperty("message").toString();
 			String predicate = relationship.getProperty("message").toString();
 			info = info * google.calInfo(startName, predicate,endName);
-//			Thread.sleep(20000);
+
 		}
 		BigDecimal bg = new BigDecimal(info);
 		info = bg.setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
 		return info;
 	}
 	
+	public void allPath(String startName, String endName) throws IOException, InterruptedException {
+		registerShutdownHook(graphDb);
+		Transaction tx = graphDb.beginTx();
+		try {
+			Node start = getNode(startName);
+			Node end = getNode(endName);
+			PathFinder<Path> finder = GraphAlgoFactory.allPaths(PathExpanders.allTypesAndDirections(), 5);
+			Iterable<Path> paths = finder.findAllPaths(start, end);
+			if(paths == null){
+				return ;
+			}
+			if(!paths.iterator().hasNext()){
+				return ;
+			}
+
+			for (Path path : paths) {
+				System.out.println(path);
+			}
+
+		} finally {
+			tx.finish();
+		}
+
+	}
 	
 	private static void registerShutdownHook(final GraphDatabaseService graphDb) {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
