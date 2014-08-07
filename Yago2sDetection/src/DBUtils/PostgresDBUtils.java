@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * 
+ * java connect postgres
  * 
  * @title: DBUtils
  */

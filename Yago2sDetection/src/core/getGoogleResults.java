@@ -22,6 +22,7 @@ public class getGoogleResults {
 		webclient.setCssEnabled(false);
 		webclient.setJavaScriptEnabled(false);
 		webclient.setRedirectEnabled(true); 
+//		webclient.setThrowExceptionOnFailingStatusCode(false);
 				
 		final HtmlForm form = htmlpage.getFormByName("f"); 
 		final HtmlSubmitInput button = form.getInputByValue("Google 搜尋");
@@ -67,12 +68,6 @@ public class getGoogleResults {
 				}
 				if(predicate.equals("<hasWonPrize>")){
 					predicate = "<win>";
-				}
-				if(predicate.equals("<directed>")){
-					predicate = "<direct>";
-				}
-				if(predicate.equals("<wasBornIn>")){
-					predicate = "<bornIn>";
 				}
 				double a = getNum(getwords.LinkGoogle(name1 + predicate+ name2));
 				double b = getNum(getwords.LinkGoogle(name2));
