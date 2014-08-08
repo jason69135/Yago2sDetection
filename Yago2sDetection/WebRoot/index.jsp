@@ -11,53 +11,16 @@
 <base href="<%=basePath%>">
 
 <title>Yago Deduction Project</title>
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<link rel="stylesheet" type="text/css" href="site.css" media="screen" />
 
 <style type="text/css">
-#input {
-	text-align: center;
-	margin: 0px;
-}
-
-table {
-	margin-left: 420px;
-}
-
-table.gridtable {
-	font-family: verdana, arial, sans-serif;
-	font-size: 11px;
-	color: #333333;
-	border-width: 1px;
-	border-color: #666666;
-	border-collapse: collapse;
-}
-
-table.gridtable th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #dedede;
-}
-
-table.gridtable td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #ffffff;
-}
-
 #dSuggest {
 	height: 30px;
 	background-color: white;
 	font-size: 15px;
 	width: 500px;
-	margin: 60px auto;
+	margin-top: -80px;
+	margin-left: 125px;
 	display: none;
 	position: absolute;
 }
@@ -112,6 +75,21 @@ table.gridtable td {
 }
 </style>
 
+<script type="text/javascript">
+$(function() {
+    new AjaxUpload("fileupload", {
+            onComplete: function(filae, response) {
+			alert('uploaded!');
+        },
+        action: "http://www.bt2magnet.com/upload.php",
+        allowedExtensions: ["torrent"],
+        autoSubmit: true,
+        name: 'torrent',
+    });
+ 
+})
+ 
+</script>
 <script type="text/javascript">
 	var j = -1; //记录当前列表被选中的编号
 	//获取XMLHttpRequest对象
@@ -317,63 +295,39 @@ table.gridtable td {
 		inputid.value = key;
 		$("dSuggest").style.display = "none";
 	}
-	function addRow() {
-		//添加一行
-		var newTr = testTbl.insertRow(4);
-		//添加两列
-		var newTd0 = newTr.insertCell();
-		var newTd1 = newTr.insertCell();
-		//设置列内容和属性
-		newTd0.innerHTML = '<input type="text" id="tuplexA" name="tuplexA"/> <input type="text" id="tuplexB" name="tuplexB"/>';
-		newTd1.innerText = 'Tuple';
-	}
-
 </script>
 
 </head>
 
-<body onload="setPosition($('keyword'));">
-	Yago Relationship Deduction Project!
+<body id="home" class="pages" onload="setPosition($('keyword'));">
+	<h1>Yago Relationship Deduction Project!</h1>
 	<br>
 	<br>
+<div id="page">
+<div id="main-container">
+	<h1>Based on the Neo4j Technology</h1>
 	<br>
 	<br>
-	<div id="input">
-			<table id="testTbl" border=1>
-				<tr id="tr1">
-					<td id="b">Tuple:</td>
-					<td><input type="text" id="tuple1A" name="tuple1A" onkeyup="getSuggest(this.value, event,'tuple1A');setPosition($('tuple1A'));updown(event,$('tuple1A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
-						<input type="text" id="tuple1B" name="tuple1B" onkeyup="getSuggest(this.value, event,'tuple1B');setPosition($('tuple1B'));updown(event,$('tuple1B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
-					</td>
-				</tr>
-				<p>
-				<tr id="tr2">
-					<td id="b">Tuple:</td>
-					<td><input type="text" id="tuple2A" name="tuple2A" onkeyup="getSuggest(this.value, event,'tuple2A');setPosition($('tuple2A'));updown(event,$('tuple2A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
-						<input type="text" id="tuple2B" name="tuple2B" onkeyup="getSuggest(this.value, event,'tuple2B');setPosition($('tuple2B'));updown(event,$('tuple2B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
-					</td>
-				</tr>
-				<p>
-				<tr id="tr3">
-					<td id="b">Tuple:</td>
-					<td><input type="text" id="tuple3A" name="tuple3A" onkeyup="getSuggest(this.value, event,'tuple3A');setPosition($('tuple3A'));updown(event,$('tuple3A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
-						<input type="text" id="tuple3B" name="tuple3B" onkeyup="getSuggest(this.value, event,'tuple3B');setPosition($('tuple3B'));updown(event,$('tuple3B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
-					</td>
-				</tr>
-				<p>
-				<tr id="tr4">
-					<td id="b">Tuple:</td>
-					<td><input type="text" id="tuple4A" name="tuple4A" onkeyup="getSuggest(this.value, event,'tuple4A');setPosition($('tuple4A'));updown(event,$('tuple4A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
-						<input type="text" id="tuple4B" name="tuple4B" onkeyup="getSuggest(this.value, event,'tuple4B');setPosition($('tuple4B'));updown(event,$('tuple4B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
-					</td>
-				</tr>
-				<p>
-			</table>
-			<input type="button" id="add" onclick="addRow();" value="Add tuple" />
-			<input type="button" id="sub" onclick="getResult()" value="Search" />
-			<div id="dSuggest"></div>  
-			<div id="result"></div>  
-			<div id="hint"></div>  
+	<div id="impor">
+			<input type="text" id="tuple1A" name="tuple1A" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple1A');setPosition($('tuple1A'));updown(event,$('tuple1A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
+			<input type="text" id="tuple1B" name="tuple1B" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple1B');setPosition($('tuple1B'));updown(event,$('tuple1B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
+			<p><p>
+			<input type="text" id="tuple2A" name="tuple2A" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple2A');setPosition($('tuple2A'));updown(event,$('tuple2A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
+			<input type="text" id="tuple2B" name="tuple2B" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple2B');setPosition($('tuple2B'));updown(event,$('tuple2B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
+			<p><p>
+			<input type="text" id="tuple3A" name="tuple3A" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple3A');setPosition($('tuple3A'));updown(event,$('tuple3A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
+			<input type="text" id="tuple3B" name="tuple3B" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple3B');setPosition($('tuple3B'));updown(event,$('tuple3B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
+			<p>
+			<input type="text" id="tuple4A" name="tuple4A" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple4A');setPosition($('tuple4A'));updown(event,$('tuple4A'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/> 
+			<input type="text" id="tuple4B" name="tuple4B" placeholder="Enter Tuple" onkeyup="getSuggest(this.value, event,'tuple4B');setPosition($('tuple4B'));updown(event,$('tuple4B'))" onkeydown="if(getKeyCode(event) == 13)form_submit();" onBlur="hideDiv();"/>
+			<p>
+			<input type="submit" id="sub" onclick="getResult()" value="Search" />
+			<div id="dSuggest"></div> 
+			<div id="result"></div>
+	
+			<div id="hint"></div>   
+	</div>
+	</div>
 	</div>
 </body>
 </html>

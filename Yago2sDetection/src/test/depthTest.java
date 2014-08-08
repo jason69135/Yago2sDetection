@@ -36,7 +36,7 @@ public class depthTest{
 		try {
 			Node start = getNode(startName);
 			Node end = getNode(endName);
-			PathFinder<Path> finder = GraphAlgoFactory.allPaths(PathExpanders.allTypesAndDirections(), 5);
+			PathFinder<Path> finder = GraphAlgoFactory.allPaths(PathExpanders.allTypesAndDirections(), 4);
 			Iterable<Path> paths = finder.findAllPaths(start, end);
 			HashMap<Double, Path> weightPath = new HashMap<Double, Path>();
 			if(paths == null){

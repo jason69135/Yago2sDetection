@@ -12,6 +12,7 @@ public class MainMain {
 		depthTest aa = new depthTest();
 		try {
 			aa.findAllPath("<Gong_Li>","<Zhang_Ziyi>");
+			aa.findAllPath("<Zhang_Ziyi>","<Fan_Bingbing>");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

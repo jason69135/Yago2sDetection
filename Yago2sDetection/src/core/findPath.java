@@ -50,7 +50,7 @@ public class findPath {
 		try {
 			Node start = getNode(startName);
 			Node end = getNode(endName);
-			PathFinder<Path> finder = GraphAlgoFactory.allPaths(PathExpanders.allTypesAndDirections(), 3);
+			PathFinder<Path> finder = GraphAlgoFactory.allPaths(PathExpanders.allTypesAndDirections(), 2);
 			Iterable<Path> paths = finder.findAllPaths(start, end);
 			HashMap<Double, Path> weightPath = new HashMap<Double, Path>();
 			if(paths == null){
@@ -62,7 +62,7 @@ public class findPath {
 			for (Path path : paths) {
 				if(path.length() == 0){
 				}
-				double beta = 1;
+				double beta = 0.1;
 				double Pconf = calConfidence(path);
 				double Pinfo = calInfo(path);
 				double P = beta * Pconf + (1-beta) * Pinfo ;
@@ -328,6 +328,7 @@ public class findPath {
 	public String compareMetapath0(List<String> comparelist) {
 		int size = comparelist.size();
 		String metapath0 = comparelist.get(0);
+		if(metapath0 != null){
 		for (int i = 2; i < size; i = i + 2) {
 
 			String m = comparelist.get(i);
@@ -345,6 +346,7 @@ public class findPath {
 				if (m.equals(metapath0)) {
 					continue;
 				}
+				return null;
 			}
 			if (m == null) {
 				return null;
@@ -352,6 +354,8 @@ public class findPath {
 		}
 
 		return metapath0;
+		}
+		return null;
 	}
 
 	public String compareMetapath1(List<String> comparelist) {
@@ -371,11 +375,9 @@ public class findPath {
 			}
 			if (m != null && n == null) {
 				if (m.equals(metapath1)) {
-					return null;
-				}
-				if (m.equals(metapath1)) {
 					continue;
 				}
+				return null;
 			}
 			if (m == null) {
 				return null;
@@ -392,10 +394,20 @@ public class findPath {
 		Iterator<Node> nodeitr = nodes.iterator();
 		Iterator<Relationship> relationitr = relations.iterator();
 		while (nodeitr.hasNext()) {
-			Iterator<Label> labels = nodeitr.next().getLabels().iterator();
+			Node node = nodeitr.next();
+			Iterator<Label> labels = node.getLabels().iterator();
+			if(node.getProperty("message").equals("<male>")){
+				metapath += "male" + ",";
+			}
+			else if(node.getProperty("message").equals("<female>")){
+				metapath += "female" + ",";
+			}
+			else{
 			metapath += labels.next().name() + ",";
+			}
 			if (relationitr.hasNext()) {
-				metapath += relationitr.next().getType().name() + ",";
+				Relationship re = relationitr.next();
+					metapath += re.getType().name() + ",";
 			}
 		}
 		System.out.println("metapath:" + metapath);
